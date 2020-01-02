@@ -11,20 +11,28 @@ function myFunction() {
     var DOB_year = document.getElementById("year").value;
     var txt_about = document.getElementById("txt_about").value;
 
+
+    var reg3 = /^[a-zA-Z]*$/;
     if (fname == "") {
         document.getElementById("firstname_msg").innerHTML = "Please provide your First Name!";
         document.getElementById("firstname").style.borderColor = "red";
-    } else if (!isNaN(fname)) {
+    } else if (reg3.test(fname) == false) {
         document.getElementById("firstname_msg").innerHTML = "First Name should only be Character!";
         document.getElementById("firstname").style.borderColor = "red";
+    } else {
+        document.getElementById("firstname_msg").innerHTML = "";
+        document.getElementById("firstname").style.borderColor = "green";
     }
 
     if (lname == "") {
         document.getElementById("lastname_msg").innerHTML = "Please provide your Last Name!";
         document.getElementById("lastname").style.borderColor = "red";
-    } else if (!isNaN(lname)) {
+    } else if (reg3.test(lname) == false) {
         document.getElementById("lastname_msg").innerHTML = "Enter Valid Last Name!";
         document.getElementById("lastname").style.borderColor = "red";
+    } else {
+        document.getElementById("lastname_msg").innerHTML = "";
+        document.getElementById("lastname").style.borderColor = "green";
     }
 
     if (phone == "") {
@@ -36,11 +44,17 @@ function myFunction() {
     } else if (phone < 6999999999 || phone > 9999999999) {
         document.getElementById("phone_msg").innerHTML = "Enter Valid Phone Number!";
         document.getElementById("phone").style.borderColor = "red";
+    } else {
+        document.getElementById("phone_msg").innerHTML = "";
+        document.getElementById("phone").style.borderColor = "green";
     }
 
     if (off_phone == "") {} else if (isNaN(parseInt(off_phone))) {
         document.getElementById("off_phone_msg").innerHTML = "Enter Only Number!";
         document.getElementById("off_phone").style.borderColor = "red";
+    } else {
+        document.getElementById("off_phone_msg").innerHTML = "";
+        document.getElementById("off_phone").style.borderColor = "green";
     }
 
     var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
@@ -50,6 +64,9 @@ function myFunction() {
     } else if (reg.test(address) == false) {
         document.getElementById("email_msg").innerHTML = "Invalid Email Address!";
         document.getElementById("email").style.borderColor = "red";
+    } else {
+        document.getElementById("email_msg").innerHTML = "";
+        document.getElementById("email").style.borderColor = "green";
     }
 
     var reg2 = /^[a-zA-Z0-9]{8,12}$/;
@@ -62,15 +79,22 @@ function myFunction() {
     } else if (reg2.test(password) == false) {
         document.getElementById("password_msg").innerHTML = "Please Provide Password without any Special character!";
         document.getElementById("password").style.borderColor = "red";
+    } else {
+        document.getElementById("password_msg").innerHTML = "";
+        document.getElementById("password").style.borderColor = "green";
+        document.getElementById("age").disabled = false;
+        if (conf_pass == "") {
+            document.getElementById("confirm_password_msg").innerHTML = "Please Confirm the password!";
+            document.getElementById("confirm_password").style.borderColor = "red";
+        } else if (password != conf_pass) {
+            document.getElementById("confirm_password_msg").innerHTML = "Password doesn't match";
+            document.getElementById("confirm_password").style.borderColor = "red";
+        } else {
+            document.getElementById("confirm_password_msg").innerHTML = "";
+            document.getElementById("confirm_password").style.borderColor = "green";
+        }
     }
 
-    if (conf_pass == "") {
-        document.getElementById("confirm_password_msg").innerHTML = "Please Confirm the password!";
-        document.getElementById("confirm_password").style.borderColor = "red";
-    } else if (password != conf_pass) {
-        document.getElementById("confirm_password_msg").innerHTML = "Password doesn't match";
-        document.getElementById("confirm_password").style.borderColor = "red";
-    }
 
     if (DOB_month == 0 || DOB_day == 0 || DOB_year == 0) {
         alert("Please Enter Valid Date of Birth");
@@ -80,13 +104,19 @@ function myFunction() {
     today_year = today_date.getFullYear();
     today_month = today_date.getMonth();
     today_day = today_date.getDate();
-    if (today_month < DOB_month) {
-        age = today_year - DOB_year + ((DOB_month - today_month) / 12);
+
+    if (DOB_month == 0 || DOB_day == 0 || DOB_year == 0) {
+        document.getElementById("dob_msg").innerHTML = "Enter a Valid Date of Birth";
     } else {
-        age = today_year - DOB_year + ((today_month - DOB_month) / 12);
+        document.getElementById("dob_msg").innerHTML = "";
+        if (today_month < DOB_month) {
+            age = today_year - DOB_year + ((DOB_month - today_month) / 12);
+        } else {
+            age = today_year - DOB_year + ((today_month - DOB_month) / 12);
+        }
+        document.getElementById("age").value = age.toFixed(2);
+        document.getElementById("age").disabled = true;
     }
-    document.getElementById("age").value = age.toFixed(2);
-    document.getElementById("age").disabled = true;
 
     if (document.getElementById('residence1').checked == false && document.getElementById('residence2').checked == false) {
         alert("Please Select you Gender!");
@@ -100,5 +130,9 @@ function myFunction() {
     if (txt_about == "") {
         document.getElementById("txt_about_msg").innerHTML = "Please Fill the Text Area!";
         document.getElementById("txt_about").style.borderColor = "red";
+    } else {
+        document.getElementById("txt_about_msg").innerHTML = "";
+        document.getElementById("txt_about").style.borderColor = "green";
     }
+
 }

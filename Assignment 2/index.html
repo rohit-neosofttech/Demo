@@ -23,6 +23,7 @@
     <script src="js/jquery.bxslider.min.js"></script>
     <script src="js/script.js" type="text/javascript"></script>
     <script src="js/validate.js" type="text/javascript"></script>
+    <script src="js/validation.js" type="text/javascript"></script>
     <!-- bxSlider CSS file -->
     <link href="css/jquery.bxslider.css" rel="stylesheet" />
     <!-- Responsive -->
@@ -139,51 +140,51 @@
                             <li class="fileds">
                                 <div class="name_fileds">
                                     <label>First Name</label>
-                                    <input id="firstname" name="firstname" type="text" />
-                                    <span id="firstname_msg"></span>
+                                    <input id="firstname" name="firstname" type="text" onblur="fnameRequire()" />
+                                    <span class="error" id="firstname_msg"></span>
                                 </div>
                                 <div class="name_fileds">
                                     <label>Last Name</label>
-                                    <input id="lastname" name="lastname" type="text" />
-                                    <span id="lastname_msg"></span>
+                                    <input id="lastname" name="lastname" type="text" onblur="lnameRequire()" />
+                                    <span class="error" id="lastname_msg"></span>
                                 </div>
                             </li>
                             <li class="fileds">
                                 <div class="phone_fileds">
                                     <label>Phone No</label>
-                                    <input id="phone" name="phone" type="text" />
-                                    <span id="phone_msg"></span>
+                                    <input id="phone" name="phone" type="text" onblur="phoneRequire()" />
+                                    <span class="error" id="phone_msg"></span>
                                 </div>
                                 <div class="phone_fileds">
                                     <label>Office No</label>
-                                    <input id="off_phone" name="office" type="text" />
-                                    <span id="off_phone_msg"></span>
+                                    <input id="off_phone" name="office" type="text" onblur="off_phoneRequire()" />
+                                    <span class="error" id="off_phone_msg"></span>
                                 </div>
                             </li>
                             <li class="fileds">
                                 <div class="email_fileds">
                                     <label>Email</label>
-                                    <input id="email" name="email" type="text" />
-                                    <span id="email_msg"></span>
+                                    <input id="email" name="email" type="text" onblur="emailRequire()" />
+                                    <span class="error" id="email_msg"></span>
                                 </div>
                                 <div class="pass_fileds">
                                     <label>Password</label>
-                                    <input id="password" name="password" type="text" />
-                                    <span id="password_msg"></span>
+                                    <input id="password" name="password" type="text" onblur="passRequire()" />
+                                    <span class="error" id="password_msg"></span>
                                 </div>
                             </li>
                             <li class="fileds">
                                 <div class="pass_fileds">
                                     <label>Confirm Password</label>
-                                    <input id="confirm_password" name="password" type="text" />
-                                    <span id="confirm_password_msg"></span>
+                                    <input id="confirm_password" name="password" type="text" onblur="conf_passRequire()" disabled/>
+                                    <span class="error" id="confirm_password_msg"></span>
                                 </div>
                                 <div class="dob_fileds selectbox">
                                     <label>My birthdate is</label>
 
                                     <ul>
                                         <li>
-                                            <select id="month" name="month" class="select month">
+                                            <select id="month" name="month" class="select month" onblur="dobRequire()">
                                             <option value="0">Month</option>
 											<option value="1">Jan</option>
 											<option value="2">Feb</option>
@@ -200,7 +201,7 @@
 										</select>
                                         </li>
                                         <li>
-                                            <select id="day" name="day" class="select day">
+                                            <select id="day" name="day" class="select day" onblur="dobRequire()">
                                             <option value="0">Day</option>
 											<option value="1">01</option>
 											<option value="2">02</option>
@@ -239,41 +240,42 @@
                                         </li>
 
                                         <li>
-                                            <select id="year" name="year" class="select year">
-											<option value="volvo">Year</option>
+                                            <select id="year" name="year" class="select year" onblur="dobRequire()">
+											<option value="0">Year</option>
 										</select>
                                         </li>
                                     </ul>
+                                    <span class="error" id="dob_msg"></span>
                                 </div>
                             </li>
                             <li class="fileds">
                                 <div class="age_fileds">
                                     <label>Age</label>
-                                    <input id="age" name="age" type="text" />
+                                    <input id="age" name="age" type="text" onblur="dobRequire()" disabled/>
                                 </div>
                                 <div class="gender_fileds">
                                     <label>Gender</label>
-                                    <ul>
+                                    <ul onblur="genderRequire()">
                                         <li><input type="radio" class="radio" id="residence1" name="radio" /><label class="radio-label" for="residence1">Male</label></li>
                                         <li><input type="radio" class="radio" id="residence2" name="radio" /><label class="radio-label" for="residence2">Female</label></li>
                                     </ul>
-                                    <span id="gender_msg"></span>
+                                    <span class="error" id="gender_msg"></span>
                                 </div>
                             </li>
                             <li>
                                 <div class="interest_fileds">
                                     <label>Interest</label>
-                                    <ul>
+                                    <ul onblur="interestRequire()">
                                         <li><input type="checkbox" class="checkbox" id="checkbox_sample18" /> <label class="css-label" for="checkbox_sample18">Biking</label></li>
                                         <li><input type="checkbox" class="checkbox" id="checkbox_sample19" /> <label class="css-label" for="checkbox_sample19">Reading</label></li>
                                         <li><input type="checkbox" class="checkbox" id="checkbox_sample20" /> <label class="css-label" for="checkbox_sample20">Playing</label></li>
                                     </ul>
-                                    <span id="checkbox_msg"></span>
+                                    <span class="error" id="checkbox_msg"></span>
                                 </div>
                                 <div class="about_you_fileds">
                                     <label>About you</label>
-                                    <textarea id="txt_about" required="required"></textarea>
-                                    <span id="txt_about_msg"></span>
+                                    <textarea id="txt_about" onblur="textRequire()"></textarea>
+                                    <span class="error" id="txt_about_msg"></span>
                                 </div>
                             </li>
                         </ul>
@@ -530,6 +532,8 @@
             // if year is 2015 selected
             if (y == year) {
                 optn.selected = true;
+                optn.value = 0;
+                console.log(optn.value);
             }
             document.getElementById('year').options.add(optn);
         }
